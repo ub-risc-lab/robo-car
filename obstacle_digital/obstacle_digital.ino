@@ -22,6 +22,7 @@ int ABS = 150;
 int rightDistance = 0,leftDistance = 0,middleDistance = 0 ;
 int h = 150;
 int l = 0;
+int distance[180];
 
 
 void _mForward()
@@ -48,6 +49,9 @@ void _mForward()
     Bluetooth.print(rightDistance);
     Bluetooth.print(",");
     Bluetooth.println("F"); 
+        delay(1000);
+    _mStop();
+    _scan();
 }
 
 void _mBack()
@@ -150,6 +154,26 @@ int Distance_test()
   return (int)Fdistance; 
 }  
 
+void _scan()
+{
+  rightDistance = 0,leftDistance = 0,middleDistance = 0 ;
+  for(int i=5;i<=175;i+=5)
+        {  
+  myservo.write(i);
+  distance[i] = Distance_test();// Calls a function for calculating the distance measured by the Ultrasonic sensor for each degree
+  Serial.print(i); // Sends the current degree into the Serial Port
+  Serial.print(","); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
+  Serial.print(distance[i]); // Sends the distance value into the Serial Port
+  Serial.println("."); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
+  delay(50);
+  }
+  // Repeats the previous lines from 165 to 15 degrees
+   middleDistance = distance[90];
+   rightDistance = distance[10];
+   leftDistance = distance[170];
+   myservo.write(90);
+   return;
+}
 void setup() 
 { 
   myservo.attach(3);// attach servo on pin 3 to servo object
