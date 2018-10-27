@@ -12,10 +12,10 @@ SoftwareSerial Bluetooth(0, 1); // RX, TX
 Servo myservo; // create servo object to control servo
 int Echo = A4;  
 int Trig = A5; 
-int in1 = 6;
-int in2 = 7;
-int in3 = 8;
-int in4 = 9;
+int in1 = A3;
+int in2 = A2;
+int in3 = A1;
+int in4 = A0;
 int ENA = 5;
 int ENB = 11;
 int ABS = 150;
@@ -238,4 +238,3 @@ void loop()
         _mForward(); 
                        
 }
-
