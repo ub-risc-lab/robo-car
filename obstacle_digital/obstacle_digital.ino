@@ -20,16 +20,18 @@ int ENA = 5;
 int ENB = 11;
 int ABS = 150;
 int rightDistance = 0,leftDistance = 0,middleDistance = 0 ;
+int h = 150;
+int l = 0;
 
 
 void _mForward()
 {
  analogWrite(ENA,ABS);
  analogWrite(ENB,ABS);
-  analogWrite(in1,HIGH);//digital output
-  analogWrite(in2,LOW);
-  analogWrite(in3,LOW);
-  analogWrite(in4,HIGH);
+  analogWrite(in1,h);//digital output
+  analogWrite(in2,l);
+  analogWrite(in3,l);
+  analogWrite(in4,h);
  //Serial.println("go forward :");
  //Bluetooth.println("go forward");
     Serial.print(middleDistance);
@@ -52,10 +54,10 @@ void _mBack()
 {
  analogWrite(ENA,ABS);
  analogWrite(ENB,ABS);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,HIGH);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW);
+  analogWrite(in1,l);
+  analogWrite(in2,h);
+ analogWrite(in3,h);
+  analogWrite(in4,l);
  //Serial.println("go back!");
  //Bluetooth.println("go back!");
     Serial.print(middleDistance);
@@ -78,10 +80,10 @@ void _mleft()
 {
  analogWrite(ENA,ABS);
  analogWrite(ENB,ABS);
-  digitalWrite(in1,HIGH);
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,HIGH);
-  digitalWrite(in4,LOW); 
+  analogWrite(in1,h);
+  analogWrite(in2,l);
+  analogWrite(in3,h);
+  analogWrite(in4,l);  
  //Serial.println("go left!");
  //Bluetooth.println("go left!");
     Serial.print(middleDistance);
@@ -103,11 +105,10 @@ void _mleft()
 void _mright()
 {
  analogWrite(ENA,ABS);
- analogWrite(ENB,ABS);
-  digitalWrite(in1,LOW);
-  digitalWrite(in2,HIGH);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,HIGH);
+  analogWrite(in1,l);
+  analogWrite(in2,h);
+  analogWrite(in3,l);
+  analogWrite(in4,h);
  //Serial.println("go right!");
  //Bluetooth.println("go right!");
     Serial.print(middleDistance);
