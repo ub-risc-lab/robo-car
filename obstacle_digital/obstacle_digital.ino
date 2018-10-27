@@ -26,10 +26,10 @@ void _mForward()
 {
  analogWrite(ENA,ABS);
  analogWrite(ENB,ABS);
-  digitalWrite(in1,HIGH);//digital output
-  digitalWrite(in2,LOW);
-  digitalWrite(in3,LOW);
-  digitalWrite(in4,HIGH);
+  analogWrite(in1,HIGH);//digital output
+  analogWrite(in2,LOW);
+  analogWrite(in3,LOW);
+  analogWrite(in4,HIGH);
  //Serial.println("go forward :");
  //Bluetooth.println("go forward");
     Serial.print(middleDistance);
