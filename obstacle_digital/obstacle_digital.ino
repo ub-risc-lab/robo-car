@@ -200,7 +200,7 @@ void loop()
     Serial.println(middleDistance);
     #endif
 
-    if(middleDistance<=30)
+    if(middleDistance<=70)
     {     
       _mStop();
       delay(500);     
@@ -246,7 +246,7 @@ void loop()
         _mleft();
         delay(360);
        }
-       else if((rightDistance<=30)||(leftDistance<=30))
+       else if((rightDistance<=70)||(leftDistance<=70))
        {
         _mBack();
         delay(180);
