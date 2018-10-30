@@ -42,13 +42,14 @@ void _mForward()
     Serial.print(rightDistance);
    Serial.print(",");
     Serial.println("F");
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.println("F"); 
+    Bluetooth.print(middleDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(leftDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(rightDistance);
+    Bluetooth.print(",");
+    Bluetooth.print("F");
+    _transmit();
         delay(1000);
     _mStop();
     _scan();
@@ -172,6 +173,16 @@ void _scan()
    rightDistance = distance[10];
    leftDistance = distance[170];
    myservo.write(90);
+}
+
+void _transmit()
+{
+  for(int i=5;i<=175;i+=5)
+  {
+    Bluetooth.print(distance[i]);
+    Bluetooth.print(",");
+  }
+  Bluetooth.println("  ");
 }
 void setup() 
 { 
