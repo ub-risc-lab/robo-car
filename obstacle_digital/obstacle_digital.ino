@@ -20,7 +20,7 @@ int ENA = 5;
 int ENB = 11;
 int ABS = 150;
 int rightDistance = 0,leftDistance = 0,middleDistance = 0 ;
-int h = 150;
+int h = 160;
 int l = 0;
 int distance[180];
 
@@ -52,7 +52,7 @@ void _mForward()
     Bluetooth.print("F");
     Bluetooth.print(",");
     _transmit();
-        delay(1000);
+        delay(650);
     _mStop();
     _scan();
 }
@@ -228,12 +228,12 @@ void loop()
       if(rightDistance>leftDistance)  
       {
         _mright();
-        delay(360);
+        delay(200);
        }
        else if(rightDistance<leftDistance)
        {
         _mleft();
-        delay(360);
+        delay(200);
        }
        else if((rightDistance<=70)||(leftDistance<=70))
        {
