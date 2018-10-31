@@ -41,7 +41,8 @@ void _mForward()
     Serial.print(",");
     Serial.print(rightDistance);
    Serial.print(",");
-    Serial.println("F");
+    Serial.print("F");
+    Serial.print(","):
     Bluetooth.print(middleDistance);
     Bluetooth.print(",");
     Bluetooth.print(leftDistance);
@@ -49,6 +50,7 @@ void _mForward()
     Bluetooth.print(rightDistance);
     Bluetooth.print(",");
     Bluetooth.print("F");
+    Bluetooth.print(",");
     _transmit();
         delay(1000);
     _mStop();
@@ -71,14 +73,16 @@ void _mBack()
     Serial.print(",");
     Serial.print(rightDistance);
     Serial.print(",");
-    Serial.println("B"); 
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.println("B"); 
+    Serial.print("B"); 
+    Serial.print(",");
+    Bluetooth.print(middleDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(leftDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(rightDistance);
+    Bluetooth.print(",");
+    Bluetooth.print("B"); 
+    Bluetooth.print(",");
 }
 
 void _mleft()
@@ -97,14 +101,16 @@ void _mleft()
     Serial.print(",");
     Serial.print(rightDistance);
     Serial.print(",");
-    Serial.println("L");
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.println("L"); 
+    Serial.print("L");
+    Serial.print(",");
+    Bluetooth.print(middleDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(leftDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(rightDistance);
+    Bluetooth.print(",");
+    Bluetooth.print("L"); 
+    Bluetooth.print(",");
 }
 
 void _mright()
@@ -122,16 +128,16 @@ void _mright()
     Serial.print(",");
     Serial.print(rightDistance);
     Serial.print(",");
-    Serial.println("R"); 
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.println("R"); 
- 
-
+    Serial.print("R"); 
+    Serial.print(",");
+    Bluetooth.print(middleDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(leftDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(rightDistance);
+    Bluetooth.print(",");
+    Bluetooth.print("R"); 
+    Bluetooth.print(",");
 } 
 void _mStop()
 {
@@ -165,9 +171,10 @@ void _scan()
   Serial.print(i); // Sends the current degree into the Serial Port
   Serial.print(","); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
   Serial.print(distance[i]); // Sends the distance value into the Serial Port
-  Serial.println("."); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
+  Serial.print(","); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
   delay(50);
   }
+  Serial.println(" ");
   // Repeats the previous lines from 165 to 15 degrees
    middleDistance = distance[90];
    rightDistance = distance[10];
@@ -182,7 +189,6 @@ void _transmit()
     Bluetooth.print(distance[i]);
     Bluetooth.print(",");
   }
-  Bluetooth.println("  ");
 }
 void setup() 
 { 
@@ -216,34 +222,6 @@ void loop()
       _mStop();
       delay(500);     
       _scan();
-//      myservo.write(10);//10°-180°          
-//      delay(1000);      
-//      rightDistance = Distance_test();
-//     // Serial.print("right distance:");
-//     // Serial.println(rightDistance);
-//     // Bluetooth.println("right distance: ");
-//     // Bluetooth.print(rightDistance);
-//
-//      #ifdef send
-//      Serial.print("rightDistance=");
-//      Serial.println(rightDistance);
-//      #endif
-//
-//      delay(500);
-//       myservo.write(90);              
-//      delay(1000);                                                  
-//      myservo.write(180);              
-//      delay(1000); 
-//      leftDistance = Distance_test();
-//     // Serial.print("left distance: ");
-//     // Serial.println(leftDistance);
-//     // Bluetooth.print("left distance: ");
-//     // Bluetooth.println(leftDistance);
-//
-//      #ifdef send
-//      Serial.print("leftDistance=");
-//      Serial.println(leftDistance);
-//      #endif
 
       delay(500);           
       //delay(1000);
