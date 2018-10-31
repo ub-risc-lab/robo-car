@@ -42,7 +42,7 @@ void _mForward()
     Serial.print(rightDistance);
    Serial.print(",");
     Serial.print("F");
-    Serial.print(","):
+    Serial.print(",");
     Bluetooth.print(middleDistance);
     Bluetooth.print(",");
     Bluetooth.print(leftDistance);
