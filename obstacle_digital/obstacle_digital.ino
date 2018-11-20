@@ -170,7 +170,7 @@ void _scan()
   delay(50);
   }
   Serial.println(" ");
-  // Repeats the previous lines from 165 to 15 degrees
+  // Repeats the previous lines from 175 to 5 degrees
    middleDistance = distance[90];
    rightDistance = distance[10];
    leftDistance = distance[170];
@@ -234,7 +234,7 @@ void loop()
     {     
       _mStop();
       delay(250);     
-      _scan();
+     // _scan();
 
       delay(250);           
       //delay(1000);
