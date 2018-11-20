@@ -1,11 +1,3 @@
-//www.elegoo.com
-//2016.09.23
-/*
-Use "myservo.write (angle)" to command the micron servo 
-to the angle degree which has a range from 10 to 180. 
-If it exceeds the range, the micro servo won’t recognize 
-this angle and will keep rotating.
-*/
 #include <SoftwareSerial.h>
 SoftwareSerial Bluetooth(0, 1); // RX, TX
 #include <Servo.h> //servo library
