@@ -25,6 +25,7 @@ void _mForward()
   analogWrite(in2,l);
   analogWrite(in3,l);
   analogWrite(in4,h);
+  decision = 'F';
  //Serial.println("go forward :");
  //Bluetooth.println("go forward");
 //    Serial.print(middleDistance);
@@ -56,6 +57,7 @@ void _mBack()
   analogWrite(in2,h);
  analogWrite(in3,h);
   analogWrite(in4,l);
+  decision = 'B';
  //Serial.println("go back!");
  //Bluetooth.println("go back!");
 //    Serial.print(middleDistance);
@@ -84,6 +86,7 @@ void _mleft()
   analogWrite(in2,l);
   analogWrite(in3,h);
   analogWrite(in4,l);  
+  decision = 'L';
  //Serial.println("go left!");
  //Bluetooth.println("go left!");
 //    Serial.print(middleDistance);
@@ -111,6 +114,7 @@ void _mright()
   analogWrite(in2,h);
   analogWrite(in3,l);
   analogWrite(in4,h);
+  decision = 'R';
  //Serial.println("go right!");
  //Bluetooth.println("go right!");
 //    Serial.print(middleDistance);
@@ -237,33 +241,28 @@ void loop()
       if(rightDistance>leftDistance)  
       {
         _mright();
-        decision = 'R';
         _transmit();
         delay(200);
        }
        else if(rightDistance<leftDistance)
        {
         _mleft();
-        decision = 'L';
         _transmit();
         delay(200);
        }
        else if((rightDistance<=70)||(leftDistance<=70))
        {
         _mBack();
-        decision = 'B';
         _transmit();
         delay(180);
        }
        else
        {
         _mForward();
-        decision = 'F';
         _transmit();
        }
     }  // end if(middle distance)
     else
         _mForward();
-        decision = 'F';
         _transmit();   
 }
