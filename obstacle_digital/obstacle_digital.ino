@@ -15,7 +15,7 @@ int rightDistance = 0,leftDistance = 0,middleDistance = 0 ;
 int h = 160;
 int l = 0;
 int distance[180];
-
+char decision;
 
 void _mForward()
 {
@@ -27,26 +27,25 @@ void _mForward()
   analogWrite(in4,h);
  //Serial.println("go forward :");
  //Bluetooth.println("go forward");
-    Serial.print(middleDistance);
-    Serial.print(",");
-    Serial.print(leftDistance);
-    Serial.print(",");
-    Serial.print(rightDistance);
-   Serial.print(",");
-    Serial.print("F");
-    Serial.print(",");
-    Bluetooth.print(middleDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(leftDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(rightDistance);
-    Bluetooth.print(",");
-    Bluetooth.print("F");
-    Bluetooth.print(",");
-    _transmit();
+//    Serial.print(middleDistance);
+//    Serial.print(",");
+//    Serial.print(leftDistance);
+//    Serial.print(",");
+//    Serial.print(rightDistance);
+//   Serial.print(",");
+//    Serial.print("F");
+//    Serial.print(",");
+//    Bluetooth.print(middleDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(leftDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(rightDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print("F");
+//    Bluetooth.print(",");
+   // _transmit();
         delay(650);
-    _mStop();
-    _scan();
+
 }
 
 void _mBack()
@@ -59,22 +58,22 @@ void _mBack()
   analogWrite(in4,l);
  //Serial.println("go back!");
  //Bluetooth.println("go back!");
-    Serial.print(middleDistance);
-    Serial.print(",");
-    Serial.print(leftDistance);
-    Serial.print(",");
-    Serial.print(rightDistance);
-    Serial.print(",");
-    Serial.print("B"); 
-    Serial.print(",");
-    Bluetooth.print(middleDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(leftDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(rightDistance);
-    Bluetooth.print(",");
-    Bluetooth.print("B"); 
-    Bluetooth.print(",");
+//    Serial.print(middleDistance);
+//    Serial.print(",");
+//    Serial.print(leftDistance);
+//    Serial.print(",");
+//    Serial.print(rightDistance);
+//    Serial.print(",");
+//    Serial.print("B"); 
+//    Serial.print(",");
+//    Bluetooth.print(middleDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(leftDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(rightDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print("B"); 
+//    Bluetooth.print(",");
 }
 
 void _mleft()
@@ -87,22 +86,22 @@ void _mleft()
   analogWrite(in4,l);  
  //Serial.println("go left!");
  //Bluetooth.println("go left!");
-    Serial.print(middleDistance);
-    Serial.print(",");
-    Serial.print(leftDistance);
-    Serial.print(",");
-    Serial.print(rightDistance);
-    Serial.print(",");
-    Serial.print("L");
-    Serial.print(",");
-    Bluetooth.print(middleDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(leftDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(rightDistance);
-    Bluetooth.print(",");
-    Bluetooth.print("L"); 
-    Bluetooth.print(",");
+//    Serial.print(middleDistance);
+//    Serial.print(",");
+//    Serial.print(leftDistance);
+//    Serial.print(",");
+//    Serial.print(rightDistance);
+//    Serial.print(",");
+//    Serial.print("L");
+//    Serial.print(",");
+//    Bluetooth.print(middleDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(leftDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(rightDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print("L"); 
+//    Bluetooth.print(",");
 }
 
 void _mright()
@@ -114,22 +113,22 @@ void _mright()
   analogWrite(in4,h);
  //Serial.println("go right!");
  //Bluetooth.println("go right!");
-    Serial.print(middleDistance);
-    Serial.print(",");
-    Serial.print(leftDistance);
-    Serial.print(",");
-    Serial.print(rightDistance);
-    Serial.print(",");
-    Serial.print("R"); 
-    Serial.print(",");
-    Bluetooth.print(middleDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(leftDistance);
-    Bluetooth.print(",");
-    Bluetooth.print(rightDistance);
-    Bluetooth.print(",");
-    Bluetooth.print("R"); 
-    Bluetooth.print(",");
+//    Serial.print(middleDistance);
+//    Serial.print(",");
+//    Serial.print(leftDistance);
+//    Serial.print(",");
+//    Serial.print(rightDistance);
+//    Serial.print(",");
+//    Serial.print("R"); 
+//    Serial.print(",");
+//    Bluetooth.print(middleDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(leftDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print(rightDistance);
+//    Bluetooth.print(",");
+//    Bluetooth.print("R"); 
+//    Bluetooth.print(",");
 } 
 void _mStop()
 {
@@ -176,6 +175,22 @@ void _scan()
 
 void _transmit()
 {
+  Serial.print(middleDistance);
+    Serial.print(",");
+    Serial.print(leftDistance);
+    Serial.print(",");
+    Serial.print(rightDistance);
+   Serial.print(",");
+    Serial.print(decision);
+    Serial.print(",");
+    Bluetooth.print(middleDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(leftDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(rightDistance);
+    Bluetooth.print(",");
+    Bluetooth.print(decision);
+    Bluetooth.print(",");
   for(int i=5;i<=175;i+=5)
   {
     Bluetooth.print(distance[i]);
@@ -201,43 +216,54 @@ void setup()
 
 void loop() 
 { 
-    myservo.write(90);//setservo position according to scaled value
-    delay(500); 
-    middleDistance = Distance_test();
-    #ifdef send
-    Serial.print("middleDistance=");
-    Serial.println(middleDistance);
-    #endif
+    _mStop();
+    _scan();
+  //  myservo.write(90);//setservo position according to scaled value
+    delay(250); 
+//    middleDistance = Distance_test();
+//    #ifdef send
+//    Serial.print("middleDistance=");
+//    Serial.println(middleDistance);
+//    #endif
 
     if(middleDistance<=70)
     {     
       _mStop();
-      delay(500);     
+      delay(250);     
       _scan();
 
-      delay(500);           
+      delay(250);           
       //delay(1000);
       if(rightDistance>leftDistance)  
       {
         _mright();
+        decision = 'R';
+        _transmit();
         delay(200);
        }
        else if(rightDistance<leftDistance)
        {
         _mleft();
+        decision = 'L';
+        _transmit();
         delay(200);
        }
        else if((rightDistance<=70)||(leftDistance<=70))
        {
         _mBack();
+        decision = 'B';
+        _transmit();
         delay(180);
        }
        else
        {
         _mForward();
+        decision = 'F';
+        _transmit();
        }
     }  // end if(middle distance)
     else
         _mForward();
-                       
+        decision = 'F';
+        _transmit();   
 }
