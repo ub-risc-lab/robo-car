@@ -55,7 +55,7 @@ void _mBack()
  analogWrite(ENB,ABS);
   analogWrite(in1,l);
   analogWrite(in2,h);
- analogWrite(in3,h);
+  analogWrite(in3,h);
   analogWrite(in4,l);
   decision = 'B';
  //Serial.println("go back!");
@@ -76,6 +76,8 @@ void _mBack()
 //    Bluetooth.print(",");
 //    Bluetooth.print("B"); 
 //    Bluetooth.print(",");
+     delay(650);
+     _transmit();
 }
 
 void _mleft()
@@ -105,6 +107,8 @@ void _mleft()
 //    Bluetooth.print(",");
 //    Bluetooth.print("L"); 
 //    Bluetooth.print(",");
+     delay(650);
+     _transmit();
 }
 
 void _mright()
@@ -133,6 +137,8 @@ void _mright()
 //    Bluetooth.print(",");
 //    Bluetooth.print("R"); 
 //    Bluetooth.print(",");
+     delay(650);
+     _transmit();
 } 
 void _mStop()
 {
@@ -174,7 +180,7 @@ void _scan()
    middleDistance = distance[90];
    rightDistance = distance[10];
    leftDistance = distance[170];
-   myservo.write(90);
+  // myservo.write(90);
 }
 
 void _transmit()
@@ -222,7 +228,7 @@ void loop()
 { 
     _mStop();
     _scan();
-  //  myservo.write(90);//setservo position according to scaled value
+   //  myservo.write(90);//setservo position according to scaled value
     delay(250); 
 //    middleDistance = Distance_test();
 //    #ifdef send
@@ -241,25 +247,25 @@ void loop()
       if(rightDistance>leftDistance)  
       {
         _mright();
-        _transmit();
+        //_transmit();
         delay(200);
        }
        else if(rightDistance<leftDistance)
        {
         _mleft();
-        _transmit();
+        //_transmit();
         delay(200);
        }
        else if((rightDistance<=70)||(leftDistance<=70))
        {
         _mBack();
-        _transmit();
+        //_transmit();
         delay(180);
        }
        else
        {
         _mForward();
-        _transmit();
+        //_transmit();
        }
     }  // end if(middle distance)
     else
