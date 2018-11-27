@@ -26,25 +26,6 @@ void _mForward()
   analogWrite(in3,l);
   analogWrite(in4,h);
   decision = 'F';
- //Serial.println("go forward :");
- //Bluetooth.println("go forward");
-//    Serial.print(middleDistance);
-//    Serial.print(",");
-//    Serial.print(leftDistance);
-//    Serial.print(",");
-//    Serial.print(rightDistance);
-//   Serial.print(",");
-//    Serial.print("F");
-//    Serial.print(",");
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print("F");
-//    Bluetooth.print(",");
-   // _transmit();
         delay(650);
 
 }
@@ -58,24 +39,6 @@ void _mBack()
   analogWrite(in3,h);
   analogWrite(in4,l);
   decision = 'B';
- //Serial.println("go back!");
- //Bluetooth.println("go back!");
-//    Serial.print(middleDistance);
-//    Serial.print(",");
-//    Serial.print(leftDistance);
-//    Serial.print(",");
-//    Serial.print(rightDistance);
-//    Serial.print(",");
-//    Serial.print("B"); 
-//    Serial.print(",");
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print("B"); 
-//    Bluetooth.print(",");
      delay(650);
      _transmit();
 }
@@ -89,24 +52,6 @@ void _mleft()
   analogWrite(in3,h);
   analogWrite(in4,l);  
   decision = 'L';
- //Serial.println("go left!");
- //Bluetooth.println("go left!");
-//    Serial.print(middleDistance);
-//    Serial.print(",");
-//    Serial.print(leftDistance);
-//    Serial.print(",");
-//    Serial.print(rightDistance);
-//    Serial.print(",");
-//    Serial.print("L");
-//    Serial.print(",");
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print("L"); 
-//    Bluetooth.print(",");
      delay(650);
      _transmit();
 }
@@ -119,24 +64,6 @@ void _mright()
   analogWrite(in3,l);
   analogWrite(in4,h);
   decision = 'R';
- //Serial.println("go right!");
- //Bluetooth.println("go right!");
-//    Serial.print(middleDistance);
-//    Serial.print(",");
-//    Serial.print(leftDistance);
-//    Serial.print(",");
-//    Serial.print(rightDistance);
-//    Serial.print(",");
-//    Serial.print("R"); 
-//    Serial.print(",");
-//    Bluetooth.print(middleDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(leftDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print(rightDistance);
-//    Bluetooth.print(",");
-//    Bluetooth.print("R"); 
-//    Bluetooth.print(",");
      delay(650);
      _transmit();
 } 
@@ -144,10 +71,6 @@ void _mStop()
 {
   digitalWrite(ENA,LOW);
   digitalWrite(ENB,LOW);
- // Serial.println("obstacle at:");
- // Serial.print(middleDistance);
-  //Bluetooth.println("obstacle at:");
- // Bluetooth.print(middleDistance);  
 } 
  /*Ultrasonic distance measurement Sub function*/
 int Distance_test()   
@@ -165,17 +88,13 @@ int Distance_test()
 void _scan()
 {
   
-  for(int i=5;i<=175;i+=5)
+  for(int i=5;i<=170;i+=5)
         {  
   myservo.write(i);
   distance[i] = Distance_test();// Calls a function for calculating the distance measured by the Ultrasonic sensor for each degree
-  Serial.print(i); // Sends the current degree into the Serial Port
-  Serial.print(","); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
-  Serial.print(distance[i]); // Sends the distance value into the Serial Port
-  Serial.print(","); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
   delay(50);
   }
-  Serial.println(" ");
+ // Serial.println(" ");
   // Repeats the previous lines from 175 to 5 degrees
    middleDistance = distance[90];
    rightDistance = distance[10];
@@ -185,6 +104,13 @@ void _scan()
 
 void _transmit()
 {
+  for(int i=5;i<=175;i+=5)
+  {
+  Serial.print(distance[i]); // Sends the distance value into the Serial Port
+  Serial.print(","); // Sends addition character right next to the previous value needed later in the Processing IDE for indexing
+    Bluetooth.print(distance[i]);
+    Bluetooth.print(",");
+  }
   Serial.print(middleDistance);
     Serial.print(",");
     Serial.print(leftDistance);
@@ -192,7 +118,7 @@ void _transmit()
     Serial.print(rightDistance);
    Serial.print(",");
     Serial.print(decision);
-    Serial.print(",");
+    Serial.println(",");
     Bluetooth.print(middleDistance);
     Bluetooth.print(",");
     Bluetooth.print(leftDistance);
@@ -200,12 +126,8 @@ void _transmit()
     Bluetooth.print(rightDistance);
     Bluetooth.print(",");
     Bluetooth.print(decision);
-    Bluetooth.print(",");
-  for(int i=5;i<=175;i+=5)
-  {
-    Bluetooth.print(distance[i]);
-    Bluetooth.print(",");
-  }
+    Bluetooth.println(",");
+
 }
 void setup() 
 { 
@@ -228,44 +150,31 @@ void loop()
 { 
     _mStop();
     _scan();
-   //  myservo.write(90);//setservo position according to scaled value
-    delay(250); 
-//    middleDistance = Distance_test();
-//    #ifdef send
-//    Serial.print("middleDistance=");
-//    Serial.println(middleDistance);
-//    #endif
+    myservo.write(90);//setservo position according to scaled value
 
     if(middleDistance<=70)
     {     
       _mStop();
       delay(250);     
-     // _scan();
-
-      delay(250);           
-      //delay(1000);
+      
       if(rightDistance>leftDistance)  
       {
         _mright();
-        //_transmit();
         delay(200);
        }
        else if(rightDistance<leftDistance)
        {
         _mleft();
-        //_transmit();
         delay(200);
        }
        else if((rightDistance<=70)||(leftDistance<=70))
        {
         _mBack();
-        //_transmit();
         delay(180);
        }
        else
        {
         _mForward();
-        //_transmit();
        }
     }  // end if(middle distance)
     else
