@@ -156,8 +156,13 @@ void loop()
     {     
       _mStop();
       delay(250);     
-      
-      if(rightDistance>leftDistance)  
+
+      if((rightDistance<=10)&&(leftDistance<=10))
+       {
+        _mBack();
+        delay(180);
+       }
+      else if(rightDistance>leftDistance)  
       {
         _mright();
         delay(200);
@@ -167,11 +172,7 @@ void loop()
         _mleft();
         delay(200);
        }
-       else if((rightDistance<=70)||(leftDistance<=70))
-       {
-        _mBack();
-        delay(180);
-       }
+       
        else
        {
         _mForward();
